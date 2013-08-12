@@ -31,4 +31,13 @@ Installation
 
 Download and install like so:
 
-    git clone 
+    git clone https://github.com/limikael/rendersound.git
+
+    cd rendersound
+
+    git submodule init
+    git submodule update
+
+    ./waf configure build install
+
+Enjoy!
