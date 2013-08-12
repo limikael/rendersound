@@ -1,0 +1,3 @@
+[submodule "extern/ffsnd"]
+	path = extern/ffsnd
+	url = https://github.com/limikael/ffsnd.git
