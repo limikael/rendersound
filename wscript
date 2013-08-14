@@ -9,20 +9,15 @@ def configure(cnf):
 	if cnf.options.debug:
 		cnf.env.append_value("CFLAGS",["-DDEBUG"])
 
-	cnf.check(
-		features='c cprogram', 
-		lib=[
-			'avcodec', 'avformat', 'm', 'mp3lame', 'bz2', 'z', 'm', 'avutil', 'gd',
-			'pthread'
-		],
-		uselib_store='AV'
-	)
+	cnf.check(features='c cprogram',lib="gd",uselib_store="GD")
+	cnf.check_cfg(package="libavcodec",uselib_store="AVCODEC",args='--cflags --libs')
+	cnf.check_cfg(package="libavformat",uselib_store="AVFORMAT",args='--cflags --libs')
 
 def build(bld):
 	bld(
 		features="c cprogram", 
 		source=['src/rendersound.c','src/soundrenderer.c','extern/ffsnd/src/ffsndin.c','extern/ffsnd/src/ffsndutil.c'], 
 		target='rendersound', 
-		use=['AV'],
+		use=['GD','AVCODEC','AVFORMAT'],
 		includes='extern/ffsnd/src'
 	)
