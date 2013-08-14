@@ -7,7 +7,6 @@
 //#include <sndfile.h>
 #include <stdbool.h>
 
-#include "util.h"
 #include "soundrenderer.h"
 #include "ffsndin.h"
 #include "ffsndutil.h"
