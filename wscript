@@ -12,7 +12,7 @@ def configure(cnf):
 	cnf.check(
 		features='c cprogram', 
 		lib=[
-			'avcodec', 'avformat', 'iconv', 'm', 'mp3lame', 'bz2', 'z', 'm', 'avutil', 'gd'
+			'avcodec', 'avformat', 'm', 'mp3lame', 'bz2', 'z', 'm', 'avutil', 'gd'
 		],
 		uselib_store='AV'
 	)
@@ -20,7 +20,7 @@ def configure(cnf):
 def build(bld):
 	bld(
 		features="c cprogram", 
-		source='src/rendersound.c src/soundrenderer.c extern/ffsnd/src/ffsndin.c extern/ffsnd/src/ffsndutil.c', 
+		source=['src/rendersound.c','src/soundrenderer.c','extern/ffsnd/src/ffsndin.c','extern/ffsnd/src/ffsndutil.c'], 
 		target='rendersound', 
 		use=['AV'],
 		includes='extern/ffsnd/src'

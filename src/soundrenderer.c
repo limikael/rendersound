@@ -171,6 +171,7 @@ int soundrenderer_render(SOUNDRENDERER *rend, char *fn) {
 	gdImagePtr image;
 	int percent, oldpercent;
 	int oldtime, t;
+	FILE *out=fopen(rend->output_file_name,"wb");
 
 	TRACE("running render..");
 
@@ -179,6 +180,11 @@ int soundrenderer_render(SOUNDRENDERER *rend, char *fn) {
 
 	if (!rend->ffsndin) {
 		rend->error_str="Unable to open input file.";
+		return 0;
+	}
+
+	if (!out) {
+		rend->error_str="Unable to open output file.";
 		return 0;
 	}
 
@@ -241,13 +247,6 @@ int soundrenderer_render(SOUNDRENDERER *rend, char *fn) {
 	gdImageCopyResampled(scaled,image, 0,0, 0,0,
 		rend->width,rend->height,
 		rend->unscaled_width,rend->unscaled_height);
-
-	FILE *out=fopen(rend->output_file_name,"wb");
-
-	if (!out) {
-		rend->error_str="Unable to open output file.";
-		return 0;
-	}
 
 	gdImageAlphaBlending(scaled,false);
 	gdImageSaveAlpha(scaled,true);
