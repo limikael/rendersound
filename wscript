@@ -12,7 +12,8 @@ def configure(cnf):
 	cnf.check(
 		features='c cprogram', 
 		lib=[
-			'avcodec', 'avformat', 'm', 'mp3lame', 'bz2', 'z', 'm', 'avutil', 'gd'
+			'avcodec', 'avformat', 'm', 'mp3lame', 'bz2', 'z', 'm', 'avutil', 'gd',
+			'pthread'
 		],
 		uselib_store='AV'
 	)
